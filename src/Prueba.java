@@ -14,6 +14,7 @@ class ConversorTemperaturas{
 
 class Ventana extends JFrame {
 	JTextField cajaEntrada, cajaSalida;
+	JComboBox comboEntrada, comboSalida;
 	public Ventana(){
 		//configuracion ventana
 				getContentPane().setLayout(null);
@@ -27,13 +28,17 @@ class Ventana extends JFrame {
 				panel.setLayout(null);
 				
 				JLabel lblConvertir=new JLabel("Convertir: ");
-				lblConvertir.setBounds(10,10,60,10);
+				lblConvertir.setBounds(10,10,60,30);
 				panel.add(lblConvertir);
 				
 				cajaEntrada=new JTextField();
-				cajaEntrada.setBounds(70,10,70,20);
+				cajaEntrada.setBounds(70,10,70,30);
 				panel.add(cajaEntrada);
 				
+				String datos[]= {"Fahrenheit", "Centigrados"};
+				comboEntrada=new JComboBox(datos);
+				comboEntrada.setBounds(150,10,100,30);
+				panel.add(comboEntrada);
 				
 				add(panel);
 				
