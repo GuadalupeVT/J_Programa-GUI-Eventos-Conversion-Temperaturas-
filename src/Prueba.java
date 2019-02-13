@@ -1,4 +1,6 @@
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -12,7 +14,7 @@ class ConversorTemperaturas{
 	}
 }
 
-class Ventana extends JFrame {
+class Ventana extends JFrame implements ActionListener{
 	JTextField cajaEntrada, cajaSalida;
 	JComboBox comboEntrada, comboSalida;
 	public Ventana(){
@@ -37,6 +39,7 @@ class Ventana extends JFrame {
 				
 				String datos[]= {"Fahrenheit", "Centigrados"};
 				comboEntrada=new JComboBox(datos);
+				comboEntrada.addActionListener(this);
 				comboEntrada.setBounds(150,10,100,30);
 				panel.add(comboEntrada);
 				
@@ -46,14 +49,35 @@ class Ventana extends JFrame {
 				
 				comboSalida=new JComboBox(datos);
 				comboSalida.setBounds(40,60,100,30);
+				comboSalida.addActionListener(this);
 				panel.add(comboSalida);
 				
 				cajaSalida=new JTextField();
 				cajaSalida.setBounds(150,60,100,30);
+				cajaSalida.setEditable(false);
 				panel.add(cajaSalida);
 				
 				add(panel);
 				
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		try {
+			double dato=Double.parseDouble(cajaEntrada.getText());
+			if(comboEntrada.getSelectedIndex()==0) {
+				if (comboSalida.getSelectedIndex()==0) {
+					cajaSalida.setText(cajaEntrada.getText());
+				}	
+				}
+			if(comboEntrada.getSelectedIndex()==1) {
+				if (comboSalida.getSelectedIndex()==1) {
+					cajaSalida.setText(cajaEntrada.getText());
+				}	
+				}
+			}catch(NumberFormatException e1) {
+				JOptionPane.showMessageDialog(this,"Debes ingresar NUMEROS CORRECTOS");
+			}
+		
 	}
 }
 
