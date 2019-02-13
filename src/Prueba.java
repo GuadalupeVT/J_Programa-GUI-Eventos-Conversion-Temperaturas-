@@ -44,6 +44,11 @@ class Ventana extends JFrame {
 				lblA.setBounds(10,60,20,30);
 				panel.add(lblA);
 				
+				comboSalida=new JComboBox(datos);
+				comboSalida.setBounds(40,60,100,30);
+				panel.add(comboSalida);
+				
+				
 				add(panel);
 				
 	}
