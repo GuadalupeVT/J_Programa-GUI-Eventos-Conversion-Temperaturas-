@@ -1,3 +1,6 @@
+import java.awt.FlowLayout;
+
+import javax.swing.*;
 
 class ConversorTemperaturas{
 	
@@ -9,11 +12,43 @@ class ConversorTemperaturas{
 	}
 }
 
+class Ventana extends JFrame {
+	JTextField cajaEntrada, cajaSalida;
+	public Ventana(){
+		//configuracion ventana
+				getContentPane().setLayout(null);
+				setDefaultCloseOperation(EXIT_ON_CLOSE);
+				setTitle("Eventos cajas");
+				setSize(300,300);
+				setLocationRelativeTo(null);
+				setVisible(true);
+				JPanel panel=new JPanel();
+				panel.setSize(300,300);
+				panel.setLayout(null);
+				
+				JLabel lblConvertir=new JLabel("Convertir: ");
+				lblConvertir.setBounds(10,10,80,10);
+				panel.add(lblConvertir);
+				
+				cajaEntrada=new JTextField();
+				
+				
+				add(panel);
+				
+	}
+}
 
 public class Prueba {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				new Ventana();
+				
+			}
+		});
 
 	}
 
