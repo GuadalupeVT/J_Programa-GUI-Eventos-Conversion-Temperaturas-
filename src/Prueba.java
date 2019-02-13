@@ -18,7 +18,7 @@ class Ventana extends JFrame {
 		//configuracion ventana
 				getContentPane().setLayout(null);
 				setDefaultCloseOperation(EXIT_ON_CLOSE);
-				setTitle("Eventos cajas");
+				setTitle("Convertidor de Temperaturas");
 				setSize(300,300);
 				setLocationRelativeTo(null);
 				setVisible(true);
@@ -27,10 +27,12 @@ class Ventana extends JFrame {
 				panel.setLayout(null);
 				
 				JLabel lblConvertir=new JLabel("Convertir: ");
-				lblConvertir.setBounds(10,10,80,10);
+				lblConvertir.setBounds(10,10,60,10);
 				panel.add(lblConvertir);
 				
 				cajaEntrada=new JTextField();
+				cajaEntrada.setBounds(70,10,70,20);
+				panel.add(cajaEntrada);
 				
 				
 				add(panel);
