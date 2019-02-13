@@ -40,6 +40,10 @@ class Ventana extends JFrame {
 				comboEntrada.setBounds(150,10,100,30);
 				panel.add(comboEntrada);
 				
+				JLabel lblA=new JLabel("A: ");
+				lblA.setBounds(10,60,20,30);
+				panel.add(lblA);
+				
 				add(panel);
 				
 	}
