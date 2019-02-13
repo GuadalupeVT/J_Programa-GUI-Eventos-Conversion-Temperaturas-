@@ -1,6 +1,7 @@
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.*;
 
@@ -62,6 +63,7 @@ class Ventana extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		DecimalFormat formatoNumeros=new DecimalFormat("################0.0##");
 		try {
 			double dato=Double.parseDouble(cajaEntrada.getText());
 			if(comboEntrada.getSelectedIndex()==0) {
@@ -72,6 +74,18 @@ class Ventana extends JFrame implements ActionListener{
 			if(comboEntrada.getSelectedIndex()==1) {
 				if (comboSalida.getSelectedIndex()==1) {
 					cajaSalida.setText(cajaEntrada.getText());
+				}	
+				}
+			if(comboEntrada.getSelectedIndex()==0) {
+				if (comboSalida.getSelectedIndex()==1) {
+					double resul=new ConversorTemperaturas().fahrenheitACentigrados(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}	
+				}
+			if(comboEntrada.getSelectedIndex()==1) {
+				if (comboSalida.getSelectedIndex()==0) {
+					double resul=new ConversorTemperaturas().centigradosAFahrenheit(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
 				}	
 				}
 			}catch(NumberFormatException e1) {
