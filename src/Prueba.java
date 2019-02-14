@@ -63,7 +63,7 @@ class Ventana extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DecimalFormat formatoNumeros=new DecimalFormat("################0.0##");
+		DecimalFormat formatoNumeros=new DecimalFormat("############0.0##");
 		try {
 			double dato=Double.parseDouble(cajaEntrada.getText());
 			if(comboEntrada.getSelectedIndex()==0) {
