@@ -31,6 +31,12 @@ class ConversorTemperaturas{
 	public double reamurAfahrenheit(double gradosRe) {
 		return (2.25*gradosRe)+32;
 	}
+	public double centigradosAKelvin(double gradosC) {
+		return gradosC+273.15;
+	}
+	public double kelvinACentigrados(double gradosK) {
+		return gradosK -273.15;
+	}
 }
 
 class Ventana extends JFrame implements ActionListener{
@@ -41,11 +47,11 @@ class Ventana extends JFrame implements ActionListener{
 				getContentPane().setLayout(null);
 				setDefaultCloseOperation(EXIT_ON_CLOSE);
 				setTitle("Convertidor de Temperaturas");
-				setSize(280,150);
+				setSize(300,150);
 				setLocationRelativeTo(null);
 				setVisible(true);
 				JPanel panel=new JPanel();
-				panel.setSize(280,150);
+				panel.setSize(300,150);
 				panel.setLayout(null);
 				
 				JLabel lblConvertir=new JLabel("Convertir: ");
@@ -53,10 +59,10 @@ class Ventana extends JFrame implements ActionListener{
 				panel.add(lblConvertir);
 				
 				cajaEntrada=new JTextField();
-				cajaEntrada.setBounds(70,10,70,30);
+				cajaEntrada.setBounds(70,10,80,30);
 				panel.add(cajaEntrada);
 				
-				String datos[]= {"Fahrenheit", "Centigrados"};
+				String datos[]= {"Selecciona opcion...","Centigrados","Fahrenheit","Kelvin","Rankine","Reamur"};
 				comboEntrada=new JComboBox(datos);
 				comboEntrada.addActionListener(this);
 				comboEntrada.setBounds(150,10,100,30);
@@ -66,7 +72,8 @@ class Ventana extends JFrame implements ActionListener{
 				lblA.setBounds(10,60,20,30);
 				panel.add(lblA);
 				
-				comboSalida=new JComboBox(datos);
+				comboSalida=new JComboBox();
+				comboSalida.addItem("Selecciona opcion...");
 				comboSalida.setBounds(40,60,100,30);
 				comboSalida.addActionListener(this);
 				panel.add(comboSalida);
@@ -82,30 +89,48 @@ class Ventana extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		DecimalFormat formatoNumeros=new DecimalFormat("############0.0##");
+		String vectorC[]= {"Selecciona opcion...","Fahrenheit","Kelvin"};
+		String vectorF[]= {"Selecciona opcion...","Centigrados","Kelvin","Rankine","Reamur"};
+		String vectorK[]= {"Selecciona opcion...","Fahrenheit","Centigrados"};
+		String vectorR[]= {"Selecciona opcion...","Fahrenheit"};
+		String vectorRe[]= {"Selecciona opcion...","Fahrenheit"};
+		
+		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Centigrados")) {
+			comboSalida.removeAllItems();
+			for (String x : vectorC) {
+				comboSalida.addItem(x);
+			}
+		}
+		
+		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Fahrenheit")) {
+			comboSalida.removeAllItems();
+			for (String x : vectorF) {
+				comboSalida.addItem(x);
+			}
+		}
+		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Kelvin")) {
+			comboSalida.removeAllItems();
+			for (String x : vectorK) {
+				comboSalida.addItem(x);
+			}
+		}
+		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Rankine")) {
+			comboSalida.removeAllItems();
+			for (String x : vectorR) {
+				comboSalida.addItem(x);
+			}
+		}
+		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Reamur")) {
+			comboSalida.removeAllItems();
+			for (String x : vectorRe) {
+				comboSalida.addItem(x);
+			}
+		}
+		
 		try {
 			double dato=Double.parseDouble(cajaEntrada.getText());
-			if(comboEntrada.getSelectedIndex()==0) {
-				if (comboSalida.getSelectedIndex()==0) {
-					cajaSalida.setText(cajaEntrada.getText());
-				}	
-				}
-			if(comboEntrada.getSelectedIndex()==1) {
-				if (comboSalida.getSelectedIndex()==1) {
-					cajaSalida.setText(cajaEntrada.getText());
-				}	
-				}
-			if(comboEntrada.getSelectedIndex()==0) {
-				if (comboSalida.getSelectedIndex()==1) {
-					double resul=new ConversorTemperaturas().fahrenheitACentigrados(dato);
-					cajaSalida.setText(formatoNumeros.format(resul)+"");
-				}	
-				}
-			if(comboEntrada.getSelectedIndex()==1) {
-				if (comboSalida.getSelectedIndex()==0) {
-					double resul=new ConversorTemperaturas().centigradosAFahrenheit(dato);
-					cajaSalida.setText(formatoNumeros.format(resul)+"");
-				}	
-				}
+			
+			
 			}catch(NumberFormatException e1) {
 				JOptionPane.showMessageDialog(this,"Debes ingresar NUMEROS CORRECTOS");
 			}
