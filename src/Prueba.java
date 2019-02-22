@@ -13,6 +13,24 @@ class ConversorTemperaturas{
 	public double fahrenheitACentigrados(double gradosF){
 		return (gradosF-32)/1.8;
 	}
+	public double fahrenheitAKelvin (double gradosF) {
+		return (gradosF+459.67)/1.8;
+	}
+	public double kelvinAFahrenheit(double gradosK) {
+		return ((9/5)*gradosK)-459.67;
+	}
+	public double fahrenheitARankine(double gradosF) {
+		return gradosF+459.67;
+	}
+	public double rankineAFahrenheit(double gradosR) {
+		return gradosR-459.67;
+	}
+	public double fahrenheitAReamur(double gradosF) {
+		return (gradosF-32)/2.25;
+	}
+	public double reamurAfahrenheit(double gradosRe) {
+		return (2.25*gradosRe)+32;
+	}
 }
 
 class Ventana extends JFrame implements ActionListener{
