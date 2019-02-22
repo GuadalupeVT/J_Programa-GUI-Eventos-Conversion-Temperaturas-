@@ -88,52 +88,112 @@ class Ventana extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DecimalFormat formatoNumeros=new DecimalFormat("############0.0##");
-		String vectorC[]= {"Selecciona opcion...","Fahrenheit","Kelvin"};
-		String vectorF[]= {"Selecciona opcion...","Centigrados","Kelvin","Rankine","Reamur"};
-		String vectorK[]= {"Selecciona opcion...","Fahrenheit","Centigrados"};
-		String vectorR[]= {"Selecciona opcion...","Fahrenheit"};
-		String vectorRe[]= {"Selecciona opcion...","Fahrenheit"};
 		
-		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Centigrados")) {
-			comboSalida.removeAllItems();
-			for (String x : vectorC) {
-				comboSalida.addItem(x);
+			DecimalFormat formatoNumeros=new DecimalFormat("############0.0##");
+			String vectorC[]= {"Selecciona opcion...","Fahrenheit","Kelvin"};
+			String vectorF[]= {"Selecciona opcion...","Centigrados","Kelvin","Rankine","Reamur"};
+			String vectorK[]= {"Selecciona opcion...","Fahrenheit","Centigrados"};
+			String vectorR[]= {"Selecciona opcion...","Fahrenheit"};
+			String vectorRe[]= {"Selecciona opcion...","Fahrenheit"};
+			
+			//Conversiones de Centigrados
+			if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Centigrados")) {
+				comboSalida.removeAllItems();
+				cajaSalida.setText("");
+				for (String x : vectorC) {
+					comboSalida.addItem(x);
+				}
 			}
-		}
-		
-		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Fahrenheit")) {
-			comboSalida.removeAllItems();
-			for (String x : vectorF) {
-				comboSalida.addItem(x);
+			
+			//Conversiones de Fahrenheit
+			if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Fahrenheit")) {
+				comboSalida.removeAllItems();
+				cajaSalida.setText("");
+				for (String x : vectorF) {
+					comboSalida.addItem(x);
+				}
 			}
-		}
-		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Kelvin")) {
-			comboSalida.removeAllItems();
-			for (String x : vectorK) {
-				comboSalida.addItem(x);
+			if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Kelvin")) {
+				comboSalida.removeAllItems();
+				cajaSalida.setText("");
+				for (String x : vectorK) {
+					comboSalida.addItem(x);
+				}
 			}
-		}
-		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Rankine")) {
-			comboSalida.removeAllItems();
-			for (String x : vectorR) {
-				comboSalida.addItem(x);
+			if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Rankine")) {
+				comboSalida.removeAllItems();
+				cajaSalida.setText("");
+				for (String x : vectorR) {
+					comboSalida.addItem(x);
+				}
 			}
-		}
-		if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Reamur")) {
-			comboSalida.removeAllItems();
-			for (String x : vectorRe) {
-				comboSalida.addItem(x);
+			if (e.getSource()==comboEntrada&&comboEntrada.getSelectedItem().equals("Reamur")) {
+				comboSalida.removeAllItems();
+				cajaSalida.setText("");
+				for (String x : vectorRe) {
+					comboSalida.addItem(x);
+				}
 			}
-		}
-		
-		try {
-			double dato=Double.parseDouble(cajaEntrada.getText());
 			
 			
-			}catch(NumberFormatException e1) {
+			try {
+				double dato=Double.parseDouble(cajaEntrada.getText());
+				
+				
+				if(comboEntrada.getSelectedItem().equals("Centigrados")&&comboSalida.getSelectedItem().equals("Fahrenheit")) {
+					double resul=new ConversorTemperaturas().centigradosAFahrenheit(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				
+				if(comboEntrada.getSelectedItem().equals("Fahrenheit")&&comboSalida.getSelectedItem().equals("Centigrados")) {
+					double resul=new ConversorTemperaturas().fahrenheitACentigrados(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				
+				if(comboEntrada.getSelectedItem().equals("Fahrenheit")&&comboSalida.getSelectedItem().equals("Kelvin")) {
+					double resul=new ConversorTemperaturas().fahrenheitAKelvin(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Kelvin")&&comboSalida.getSelectedItem().equals("Fahrenheit")) {
+					double resul=new ConversorTemperaturas().kelvinAFahrenheit(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Fahrenheit")&&comboSalida.getSelectedItem().equals("Rankine")) {
+					double resul=new ConversorTemperaturas().fahrenheitARankine(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Rankine")&&comboSalida.getSelectedItem().equals("Fahrenheit")) {
+					double resul=new ConversorTemperaturas().rankineAFahrenheit(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Fahrenheit")&&comboSalida.getSelectedItem().equals("Reamur")) {
+					double resul=new ConversorTemperaturas().fahrenheitAReamur(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Reamur")&&comboSalida.getSelectedItem().equals("Fahrenheit")) {
+					double resul=new ConversorTemperaturas().reamurAfahrenheit(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Centigrados")&&comboSalida.getSelectedItem().equals("Kelvin")) {
+					double resul=new ConversorTemperaturas().centigradosAKelvin(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+				if(comboEntrada.getSelectedItem().equals("Kelvin")&&comboSalida.getSelectedItem().equals("Centigrados")) {
+					double resul=new ConversorTemperaturas().kelvinACentigrados(dato);
+					cajaSalida.setText(formatoNumeros.format(resul)+"");
+				}
+			
+			
+	}catch(NumberFormatException e1) {
 				JOptionPane.showMessageDialog(this,"Debes ingresar NUMEROS CORRECTOS");
+			}catch(NullPointerException e2) {
+				JOptionPane.showMessageDialog(this,"Elige una opcion");
 			}
+			
+		
+		
+		
+		
 		
 	}
 }
